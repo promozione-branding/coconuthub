@@ -144,6 +144,11 @@ const Footer = () => {
                 Contact Us
               </a>
             </li>
+            <li>
+              <a href="/sitemap" className="hover:text-yellow-400">
+                Sitemap
+              </a>
+            </li>
             {/* <li><a href="/privacy-policy" className="hover:text-yellow-400">Privacy Policy</a></li>
             <li><a href="/terms" className="hover:text-yellow-400">Terms & Conditions</a></li>
             <li><a href="/return-policy" className="hover:text-yellow-400">Return & Refund Policy</a></li>
