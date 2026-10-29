@@ -17324,7 +17324,7 @@ export const categories = [
   ],
   "image": [
     {
-      "src": "/product/pistaIrani.webp",
+      "src": "/product/pista-irani.jpg",
       "alt": "Pista Irani 3kg"
     }
   ]
