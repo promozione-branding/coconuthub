@@ -7,6 +7,7 @@ import {
     MessageCircle
 } from "lucide-react";
 import Link from "next/link";
+import { handleCallClick, handleWhatsappClick } from "@/track";
 
 const Whatsapp = (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}>
@@ -19,6 +20,7 @@ export default function StickyFooter() {
         <>
             {/* Floating WhatsApp Button */}
             <a
+                onClick={() => handleWhatsappClick({ source: "Website Sticky Button", })}
                 href="https://wa.me/919818059818"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,6 +61,7 @@ export default function StickyFooter() {
 
                 {/* Call */}
                 <a
+                    onClick={() => handleCallClick({ source: "Website Mobile Sticky Footer", })}
                     href="tel:+919818059818"
                     className="flex flex-col items-center text-gray-600 hover:text-amber-500 text-xs"
                 >

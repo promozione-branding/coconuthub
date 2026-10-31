@@ -18,6 +18,7 @@ import {
   Store,
   ChevronDown,
 } from "lucide-react";
+import { handleCallClick, handleWhatsappClick } from "@/track";
 
 const Location = () => {
   const params = useParams();
@@ -209,7 +210,7 @@ const Location = () => {
                   Discover our Products
                 </Link>
 
-                <a href="tel:+919818059818" className="cursor-pointer bg-amber-500 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-600 transition">
+                <a  onClick={() => handleCallClick({ source: "Website City Pg", })} href="tel:+919818059818" className="cursor-pointer bg-amber-500 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-600 transition">
                   +91 9818059818
                 </a>
               </div>
@@ -356,6 +357,7 @@ const Location = () => {
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a
+               onClick={() => handleCallClick({ source: "Website City Pg", })}
                 href="tel:+919818059818"
                 className="flex items-center justify-center gap-2 bg-white text-amber-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition"
               >
@@ -372,6 +374,7 @@ const Location = () => {
               </a>
 
               <a
+               onClick={() => handleWhatsappClick({ source: "Website City Pg", })}
                 href="https://wa.me/919818059818"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -493,6 +496,7 @@ const Location = () => {
 
               {/* WHATSAPP BUTTON */}
               <a
+               onClick={() => handleWhatsappClick({ source: "Website City Pg CTA", })}
                 href="https://wa.me/919818059818"
                 target="_blank"
                 rel="noopener noreferrer"

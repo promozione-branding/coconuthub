@@ -1,23 +1,22 @@
-import React from 'react'
-import CategoryCityPage from './CategoryCityPage'
+
+import React from "react";
+import CategoryCityPage from "./CategoryCityPage";
 import { notFound } from "next/navigation";
-import { categoryCityContent } from './data';
+import { categoryCityContent } from "./data";
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;
 
-    const parts = slug.split("-")
+    const parts = slug.split("-in-");
     const citySlug = parts.pop();
     const categorySlug = parts.join("-");
 
     const format = (text) =>
         text
             .split("-")
-            .filter(w => w.toLowerCase() !== "in")
-            .filter(w => w.toLowerCase() !== "supplier")
-            .map(w => w[0].toUpperCase() + w.slice(1))
+            .filter((w) => !["in", "supplier"].includes(w.toLowerCase()))
+            .map((w) => w[0].toUpperCase() + w.slice(1))
             .join(" ");
-
 
     const categoryName = format(categorySlug);
     const cityName = format(citySlug);
@@ -30,29 +29,67 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
     const { slug } = await params;
-    if (!slug.includes("-")) {
+
+    if (!slug.includes("-in-")) {
         notFound();
     }
 
-    const parts = slug.split("-in-")
-    const citySlug = parts.pop();
-    const categorySlug = parts.join("-");
+    const parts = slug.split("-in-");
+
+    if (parts.length !== 2 || !parts[0] || !parts[1]) {
+        notFound();
+    }
+
+    const citySlug = parts[1];
+    const categorySlug = parts[0];
 
     const format = (text) =>
         text
             .split("-")
-            .filter(w => w.toLowerCase() !== "in")
-            .filter(w => w.toLowerCase() !== "supplier")
-            .map(w => w[0].toUpperCase() + w.slice(1))
+            .filter((w) => !["in", "supplier"].includes(w.toLowerCase()))
+            .map((w) => w[0].toUpperCase() + w.slice(1))
             .join(" ");
 
     const categoryName = format(categorySlug);
     const cityName = format(citySlug);
-    const content = categoryCityContent[categorySlug];
+
+    const originalContent = categoryCityContent[categorySlug];
+
+    if (!originalContent) {
+        notFound();
+    }
+
+    // Execute all functions on the server
+    const cityContent = {
+        mainImg: originalContent.mainImg,
+        introImg: originalContent.introImg,
+
+        h2: originalContent.h2(cityName),
+        intro: originalContent.intro(cityName),
+        intro2: originalContent.intro2(cityName),
+
+        whyChooseHeading: originalContent.whyChooseHeading(cityName),
+
+        whyChoose: originalContent.whyChoose(cityName).map((item) => ({
+            title: item.title,
+            desc: item.desc,
+            iconName: item.iconName || item.icon?.displayName || item.icon?.name,
+        })),
+
+        Details: originalContent.Details(cityName),
+
+        KeyFeatures: originalContent.KeyFeatures,
+
+        faqs: originalContent.faqs(cityName),
+    };
 
     return (
-        <CategoryCityPage categoryName={categoryName} cityName={cityName} content={content} />
-    )
-}
+        <CategoryCityPage
+            categoryName={categoryName}
+            cityName={cityName}
+            content={cityContent}
+        />
+    );
+};
 
 export default Page;

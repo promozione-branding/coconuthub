@@ -1,4 +1,5 @@
 "use client";
+import { handleWhatsappClick } from "@/track";
 import { ArrowRight } from "lucide-react";
 
 
@@ -33,7 +34,7 @@ export default function HighQualityCTA() {
           </div>
 
           {/* BUTTON */}
-          <a href="https://wa.me/919818059818">
+          <a  onClick={() => handleWhatsappClick({ source: "Website Home CTA", })} href="https://wa.me/919818059818">
             <button className="group flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 transition text-white px-6 py-3 sm:py-4 rounded-xl font-medium whitespace-nowrap animate-pulse">
               
               <span>Whatsapp Us Now</span>

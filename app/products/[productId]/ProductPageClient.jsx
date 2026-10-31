@@ -12,6 +12,7 @@ import "swiper/css/autoplay";
 
 import { Autoplay } from "swiper/modules";
 import { Leaf, Handshake, ShieldCheck } from "lucide-react";
+import { handleWhatsappClick } from "@/track";
 export default function ProductPage({ params }) {
   const { productId } = React.use(params);
 
@@ -181,6 +182,7 @@ export default function ProductPage({ params }) {
                 </button>
 
                 <a
+                 onClick={() => handleWhatsappClick({ source: "Website Product Pg", obj:product.name })}
                   href="https://wa.me/919818059818?text=Hi,%20I%20want%20to%20enquire%20about%20this%20product"
                   target="_blank"
                   rel="noopener noreferrer"

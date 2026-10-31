@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { Navigation, Autoplay } from "swiper/modules";
+import { handleWhatsappClick } from "@/track";
 
 const products = [
   {
@@ -141,7 +142,8 @@ export default function FeaturedProducts() {
 
                   {/* WHATSAPP BUTTON */}
                   <button
-                    onClick={() => handleWhatsApp(item.name)}
+                  
+                    onClick={() =>{ handleWhatsApp(item.name) ;  handleWhatsappClick({ source: "Website Home Featured Products", obj:item.name })}}
                     className="bg-black  text-white px-5 py-3 rounded-lg text-sm font-medium transition"
                   >
                     Enquire Now
