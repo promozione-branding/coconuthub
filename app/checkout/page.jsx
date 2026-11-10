@@ -36,7 +36,7 @@ export default function CheckoutPage() {
       return
     }
 
-    const phoneNumber = "917065650411"
+    const phoneNumber = "919818059818"
 
     const cartItems = cart
       .map(
