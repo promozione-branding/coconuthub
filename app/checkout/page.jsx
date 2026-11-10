@@ -46,7 +46,7 @@ export default function CheckoutPage() {
       .join("\n")
 
     const message = `
-*New Order - Mr Dates*
+*New Order - Vishal Enterprises*
 
 👤 Customer Details
 Name: ${form.firstName} ${form.lastName}
